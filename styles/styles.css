@@ -1,0 +1,787 @@
+@charset "UTF-8";
+/*
+Layout rules divide the page into sections. Layouts hold one or more modules together.
+*/
+/*
+Modules are the reusable, modular parts of our design. They are the callouts, the sidebar sections, the product lists and so on.
+*/
+/*
+State rules are ways to describe how our modules or layouts will look when in a particular state. Is it hidden or expanded? Is it active or inactive? They are about describing how a module or layout looks on screens that are smaller or bigger. They are also about describing how a module might look in different views like the home page or the inside page.
+*/
+/*
+Finally, Theme rules are similar to state rules in that they describe how modules or layouts might look. Most sites don’t require a layer of theming but it is good to be aware of it.
+*/
+/*====================----------//////////
+	INDEX
+		I 	:: Setup
+			A :: Normalize or reset
+			B :: Micro Clearfix
+		II 	:: Base (default elements, no classes)
+			A :: webfonts --> font shortkuts
+			B :: General
+		III :: Layout (to house modules)
+			A :: General
+			B :: Header
+			C :: Content
+			D :: Sidebar or other navigation
+			E :: Footer
+		IV 	:: Modules (reusable, modular parts of our design)
+		V 	:: Theme: .theme-background, .theme-border, .font-1, .font-2
+			A :: General
+			B :: shortcuts
+		VI 	:: Media Queries aka state changes 
+\\\----------====================*/
+/*====================----------//////////
+	I :: RESET  (PROPS TO: http://meyerweb.com/eric/tools/css/reset/)
+\\\----------====================
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+:focus {
+	outline: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+.group:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .group             { zoom: 1; }
+*:first-child+html .group { zoom: 1; }
+*/
+/*====================----------//////////
+	I :: Setup || A :: normalize.css v2.1.2 | MIT License | git.io/normalize
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\0000387}}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\0000390}}
+audio, canvas, video {
+  display: inline-block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\0000393}}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\0000397}}
+[hidden] {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003100}}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003105}}
+body {
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003108}}
+a:focus {
+  outline: thin dotted;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003111}}
+a:active,
+a:hover {
+  outline: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003115}}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003119}}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003122}}
+b,
+strong {
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003126}}
+dfn {
+  font-style: italic;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003129}}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003134}}
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003138}}
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003142}}
+pre {
+  white-space: pre-wrap;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003145}}
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003148}}
+small {
+  font-size: 80%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003151}}
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003157}}
+sup {
+  top: -0.5em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003160}}
+sub {
+  bottom: -0.25em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003163}}
+img {
+  border: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003166}}
+svg:not(:root) {
+  overflow: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003169}}
+figure {
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003172}}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003177}}
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003181}}
+button, input, select, textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003186}}
+button, input {
+  line-height: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003189}}
+button, select {
+  text-transform: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003192}}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003196}}
+button[disabled], html input[disabled] {
+  cursor: default;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003199}}
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003203}}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003209}}
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003212}}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003216}}
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003220}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*====================----------//////////
+	I :: Setup || B :: Micro Clear Fix | http://nicolasgallagher.com/micro-clearfix-hack/
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003227}}
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003232}}
+.cf:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003235}}
+.cf {
+  *zoom: 1;
+}
+
+/*====================----------//////////
+	II :: Base || A :: webfonts --> font shortkuts
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003241}}
+strong,
+.bold {
+  font-weight: bolder;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003245}}
+.black {
+  color: #000000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003248}}
+.white {
+  color: #FFF;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003251}}
+.grey {
+  color: #6c6c6c;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003254}}
+.ltgrey {
+  color: #a1a1a4;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003257}}
+.darkgrey {
+  color: #515152;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003260}}
+.orange {
+  color: #e54e30;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003263}}
+.fs14 {
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003266}}
+.fs16 {
+  font-size: 16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003269}}
+.fs18 {
+  font-size: 18px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003272}}
+.fs21 {
+  font-size: 21px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003275}}
+.fs24 {
+  font-size: 24px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003278}}
+.fs36 {
+  font-size: 36px;
+}
+
+/*====================----------//////////
+	III :: Base || B :: webfonts --> font shortkuts
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003284}}
+body {
+  font-family: "FranklinGothicBook", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #a1a1a4;
+  background: #ebebeb;
+  letter-spacing: 0.02em;
+  line-height: 1.4em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003292}}
+a {
+  color: #e54e30;
+  text-decoration: none;
+}
+
+/*====================----------//////////
+	III :: Layout || A :: General
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003299}}
+.desktop960 {
+  width: 960px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003302}}
+.desktop100 {
+  width: 100%;
+}
+
+/*====================----------//////////
+	III :: Layout || B :: Header
+\\\----------====================*/
+/*====================----------//////////
+	III :: Layout || C :: Content
+\\\----------====================*/
+/*====================----------//////////
+	III :: Layout || D :: Sidebar or other navigation
+\\\----------====================*/
+/*====================----------//////////
+	II :: Layout || E :: Footer
+\\\----------====================*/
+/*====================----------//////////
+	IV :: Modules
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003320}}
+.horlist {
+  /* use this with out clear:fix shortcut class ==> .cf */
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003324}}
+.horlist li,
+.column {
+  display: inline-block;
+  float: left;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003329}}
+.col-two .column {
+  width: 50%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003332}}
+.col-three .column {
+  width: 33.3333333%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003335}}
+.col-four .column {
+  width: 25%;
+}
+
+/*====================----------//////////
+	V :: Theme || A :: General
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003341}}
+.bgblack {
+  background: #000000;
+  color: #FFF;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003345}}
+.bgwhite {
+  background: #FFF;
+  color: #000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003349}}
+.bgorange {
+  background: #e54e30;
+  color: #FFF;
+}
+
+/*====================----------//////////
+	V :: Theme || B :: Shortkuts
+\\\----------====================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003356}}
+.ttnone {
+  text-transform: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003359}}
+.block {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003362}}
+.inblock {
+  display: inline-block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003365}}
+.relative {
+  position: relative;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003368}}
+.absolute {
+  position: absolute;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003371}}
+.ofhidden {
+  overflow: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003374}}
+.clear {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003377}}
+.p3020 {
+  padding: 30px 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003380}}
+.border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003385}}
+.tacenter {
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003388}}
+.taright {
+  text-align: right;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003391}}
+.animate05s {
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003398}}
+.animate1s {
+  -webkit-transition: all 1.0s ease-in-out 0s;
+  -moz-transition: all 1.0s ease-in-out 0s;
+  -o-transition: all 1.0s ease-in-out 0s;
+  transition: all 1.0s ease-in-out 0s;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003405}}
+img.w100 {
+  /* make an image will it's parent width */
+  height: auto;
+  width: 100%;
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003411}}
+.hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003416}}
+.m0auto {
+  margin: 0 auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003419}}
+.m20auto {
+  margin: 20px auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003422}}
+.m0auto20 {
+  margin: 0 auto 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003425}}
+.vamiddle {
+  vertical-align: middle;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003428}}
+.va20 {
+  height: 20px;
+  line-height: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003432}}
+.pt5 {
+  padding-top: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003435}}
+.pr5 {
+  padding-right: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003438}}
+.pb5 {
+  padding-bottom: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003441}}
+.pl5 {
+  padding-left: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003444}}
+.pt10 {
+  padding-top: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003447}}
+.pr10 {
+  padding-right: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003450}}
+.pb10 {
+  padding-bottom: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003453}}
+.pl10 {
+  padding-left: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003456}}
+.pt15 {
+  padding-top: 15px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003459}}
+.pr15 {
+  padding-right: 15px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003462}}
+.pb15 {
+  padding-bottom: 15px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003465}}
+.pl15 {
+  padding-left: 15px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003468}}
+.p20 {
+  padding: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003471}}
+.pt20 {
+  padding-top: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003474}}
+.pr20 {
+  padding-right: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003477}}
+.pb20 {
+  padding-bottom: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003480}}
+.pl20 {
+  padding-left: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003483}}
+.pt25 {
+  padding-top: 25px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003486}}
+.pr25 {
+  padding-right: 25px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003489}}
+.pb25 {
+  padding-bottom: 25px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003492}}
+.pl25 {
+  padding-left: 25px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003495}}
+.p30 {
+  padding: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003498}}
+.pt30 {
+  padding-top: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003501}}
+.pr30 {
+  padding-right: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003504}}
+.pb30 {
+  padding-bottom: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003507}}
+.pl30 {
+  padding-left: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003510}}
+.pt50 {
+  padding-top: 50px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003513}}
+.pt75 {
+  padding-top: 75px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003516}}
+.pb120 {
+  padding-bottom: 120px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003519}}
+.pt120 {
+  padding-top: 120px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003522}}
+.mb20 {
+  margin-bottom: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Bushwa\/Google\%20Drive\/webNerd\/SMACSS-SASS\/styles\/scss\/styles\.scss}line{font-family:\00003525}}
+.mb120 {
+  margin-bottom: 120px;
+}
+
+/*====================----------//////////
+	VI :: State Changes aka Media Queries
+\\\----------====================*/
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Retina-specific stuff here */
+}
+
+/*# sourceMappingURL=styles.css.map */
