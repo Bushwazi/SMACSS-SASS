@@ -1,4 +1,6 @@
-SMACSS-SASS
-===========
+#A SMACSS SASS Boilerplate attempt
+==> based on [SMACSS](http://smacss.com/)
 
-A SASS build based on SMACSS learnings
+Dependencies:
+* [grunt](http://gruntjs.com/)
+* [grunt-sass](https://github.com/gruntjs/grunt-contrib-sass)
